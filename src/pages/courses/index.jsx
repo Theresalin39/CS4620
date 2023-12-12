@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import supabase from '../../lib/supabase'; // Adjust the path as necessary
+import supabase from '../../lib/supabase'; 
 import CourseCard from '../../components/CourseCard';
 
 const CoursesPage = () => {

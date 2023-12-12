@@ -1,23 +1,23 @@
-// pages/signin.js
-
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import { signIn } from '../lib/auth'; // adjust the path as necessary
+import { signIn } from '../lib/auth';
 
 export default function SignIn() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const router = useRouter();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const router = useRouter();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await signIn(email, password);
-      router.push('/'); // redirect to home after sign in
-    } catch (error) {
-      console.error('Error signing in:', error);
-    }
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const user = await signIn(email, password);
+            if (user) {
+                router.push('/'); // Redirect to home after sign in
+            }
+        } catch (error) {
+            console.error('Error signing in:', error);
+        }
+    };
 
   return (
     <div className="container mx-auto p-4">

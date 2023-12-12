@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { resetPasswordForEmail } from '../lib/auth';
 
 export default function ForgotPassword() {
-  const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+    // ...rest of your component setup
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { error } = await supabase.auth.api.resetPasswordForEmail(email);
-    if (error) {
-      console.error('Error in password reset:', error);
-      return;
-    }
-    setSubmitted(true);
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await resetPasswordForEmail(email);
+            setSubmitted(true);
+        } catch (error) {
+            console.error('Error in password reset:', error);
+        }
+    };
 
   if (submitted) {
     return <div>Check your email for the password reset link.</div>;

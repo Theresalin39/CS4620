@@ -39,12 +39,7 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/account">
-                    Account
-                  </Link>
-                </li>
-                <li>
-                  <button onClick={() => handleSignOut(useSupabaseClient())} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                  <button onClick={() => handleSignOut(useSupabaseClient())} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                     Sign Out
                   </button>
                 </li>

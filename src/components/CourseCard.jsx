@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CourseCard = ({ course }) => {
-    // Random color for the course title on the thumbnail
+    //random color for the course title on the thumbnail
     const colors = ['text-red-500', 'text-blue-500', 'text-green-500', 'text-yellow-500'];
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
 

@@ -1,10 +1,8 @@
 import React from 'react';  
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { Auth } from '@supabase/auth-ui-react';
-import {
-  // Import predefined theme
-  ThemeSupa,
-} from '@supabase/auth-ui-shared'
+import { ThemeSupa,} from '@supabase/auth-ui-shared'
+import Header from './Header';
 
 
 const Layout = ({ children }) => {
@@ -13,14 +11,17 @@ const Layout = ({ children }) => {
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <nav className='bg-gray-800'></nav>
-      
+      <Header /> 
       {!session ? (
-        <Auth
-          supabaseClient = {supabase}
-          appearance = {{ theme: ThemeSupa}}
-          theme = "dark"
-          />
+        <div className="flex justify-center items-center w-full min-h-screen bg-gray-100 p-4">
+          <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+            <Auth
+              supabaseClient = {supabase}
+              appearance = {{ theme: ThemeSupa}}
+              theme = "white"
+              />
+          </div>
+        </div>
       ) : (
         <main className='flex-grow'>{children}</main>
       )}

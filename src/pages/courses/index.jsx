@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import supabase from '../../lib/supabase'; 
 import CourseCard from '../../components/CourseCard';
+import Layout from '../../components/Layout';
 
 const CoursesPage = () => {
     const [courses, setCourses] = useState([]);
@@ -29,13 +30,15 @@ const CoursesPage = () => {
     }
 
     return (
-        <div className="container mx-auto p-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {courses.map(course => (
-                    <CourseCard key={course.id} course={course} />
-                ))}
+        <Layout>
+            <div className="container mx-auto p-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {courses.map(course => (
+                        <CourseCard key={course.id} course={course} />
+                    ))}
+                </div>
             </div>
-        </div>
+        </Layout>
     );
 };
 

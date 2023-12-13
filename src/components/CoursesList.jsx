@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import supabase from '../lib/supabase'; // Adjust the path according to your project structure
+import supabase from '../lib/supabase'; 
 
 const CoursesList = () => {
     const [courses, setCourses] = useState([]);

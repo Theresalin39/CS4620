@@ -26,11 +26,6 @@ const Header = () => {
                 Courses
               </Link>
             </li>
-            <li>
-              <Link href="/categories">
-                Categories
-              </Link>
-            </li>
             {session ? (
               <>
                 <li>

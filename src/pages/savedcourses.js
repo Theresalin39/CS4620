@@ -16,16 +16,15 @@ const SavedCoursesPage = () => {
     useEffect(() => {
         const fetchSavedCourses = async () => {
             setLoading(true);
-
-            // Asynchronously get the current session
+    
             const { data: { session } } = await supabase.auth.getSession();
             const user = session?.user;
-
+    
             if (user) {
                 const { data, error } = await supabase
                     .from('saved_courses')
                     .select(`
-                        course (
+                        courses (
                             id,
                             title,
                             description,
@@ -34,20 +33,19 @@ const SavedCoursesPage = () => {
                         )
                     `)
                     .eq('user_id', user.id);
-
+    
                 if (error) {
                     console.error('Error fetching saved courses:', error);
                 } else {
-                    setSavedCourses(data.map(item => item.course));
+                    setSavedCourses(data.map(item => item.courses)); // Note: 'item.courses'
                 }
             } else {
-                // Handle the case where there is no user session
                 console.error('User is not logged in');
             }
-
+    
             setLoading(false);
         };
-
+    
         fetchSavedCourses();
     }, []);
 

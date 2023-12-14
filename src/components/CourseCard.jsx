@@ -19,12 +19,14 @@ const CourseCard = ({ course, onSaveCourse }) => {
                     </div>
                 </div>
             </Link>
-            <button 
-                onClick={() => onSaveCourse(course)}
-                className="mt-4 bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
-            >
-                Save
-            </button>
+            {onSaveCourse && (
+                <button 
+                    onClick={() => onSaveCourse(course)}
+                    className="mt-4 bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+                >
+                    Save
+                </button>
+            )}
         </div>
     );
 };

@@ -14,6 +14,7 @@ const CoursesPage = () => {
     };
 
     const handleSaveCourse = async (course) => {
+        console.log("Saving course:", course);
         // Asynchronously get the current session
         const { data: { session } } = await supabase.auth.getSession();
         const user = session?.user;

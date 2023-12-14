@@ -1,10 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
+import { Auth } from '@supabase/auth-ui-react'; 
+import { ThemeSupa } from '@supabase/auth-ui-shared'; 
 
 const Header = () => {
   const session = useSession();
   const supabaseClient = useSupabaseClient();
+  const isUserLoggedIn = !!session;
 
   const handleSignOut = async () => {
     await supabaseClient.auth.signOut();
@@ -27,7 +30,7 @@ const Header = () => {
                 Courses
               </Link>
             </li>
-            {session ? (
+            {isUserLoggedIn ? (
               <>
                 <li>
                   <Link href="/savedcourses">
@@ -39,14 +42,12 @@ const Header = () => {
                     Sign Out
                   </button>
                 </li>
-              </>
+            </>
             ) : (
               <li>
-                <Link href="/">
                   <span className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
                     Sign In
                   </span>
-                </Link>
               </li>
             )}
           </ul>

@@ -7,11 +7,7 @@ import PageLayout from '@/components/PageLayout';
 const SavedCoursesPage = () => {
     const [savedCourses, setSavedCourses] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [searchTerm, setSearchTerm] = useState('');
 
-    const handleSearch = (term) => {
-        setSearchTerm(term);
-    };
     
     useEffect(() => {
         const fetchSavedCourses = async () => {
@@ -55,7 +51,7 @@ const SavedCoursesPage = () => {
 
     return (
         <Layout>
-            <PageLayout title="Saved Courses" showSearchBar onSearch={handleSearch} />
+            <PageLayout title="Saved Courses"/>
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {savedCourses.map(course => (

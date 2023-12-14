@@ -10,39 +10,58 @@ const CoursesPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearch = (term) => {
-        // Update the searchTerm state to trigger the useEffect below
         setSearchTerm(term);
-      };
-
-  useEffect(() => {
-    const fetchCourses = async () => {
-      setLoading(true);
-
-      let query = supabase
-        .from('courses')
-        .select('*');
-
-      // If there is a search term, modify the query to include the filter
-      if (searchTerm) {
-        query = query
-          .ilike('title', `%${searchTerm}%`)
-          .or(`description.ilike.%${searchTerm}%`);
-      }
-
-      const { data, error } = await query;
-
-      if (error) {
-        console.error('Error fetching courses:', error);
-      } else {
-        setCourses(data);
-      }
-
-      setLoading(false);
     };
 
-    // Call the function to fetch courses
-    fetchCourses();
-  }, [searchTerm]);  // Dependency array includes searchTerm to refetch when it changes
+    const handleSaveCourse = async (course) => {
+        // Asynchronously get the current session
+        const { data: { session } } = await supabase.auth.getSession();
+        const user = session?.user;
+    
+        if (user) {
+            const { data, error } = await supabase
+                .from('saved_courses')
+                .insert([{ user_id: user.id, course_id: course.id }]);
+    
+            if (error) {
+                console.error('Error saving course:', error);
+                // Optionally, handle the error in the UI
+            } else {
+                // Optionally, handle the success in the UI
+            }
+        } else {
+            // Optionally, handle the case where the user is not logged in
+        }
+    };
+    
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            setLoading(true);
+
+            let query = supabase
+                .from('courses')
+                .select('*');
+
+            if (searchTerm) {
+                query = query
+                    .ilike('title', `%${searchTerm}%`)
+                    .or(`description.ilike.%${searchTerm}%`);
+            }
+
+            const { data, error } = await query;
+
+            if (error) {
+                console.error('Error fetching courses:', error);
+            } else {
+                setCourses(data);
+            }
+
+            setLoading(false);
+        };
+
+        fetchCourses();
+    }, [searchTerm]);
 
     if (loading) {
         return <Layout><div>Loading courses...</div></Layout>;
@@ -54,7 +73,11 @@ const CoursesPage = () => {
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {courses.map(course => (
-                        <CourseCard key={course.id} course={course} />
+                        <CourseCard 
+                            key={course.id} 
+                            course={course} 
+                            onSaveCourse={handleSaveCourse} 
+                        />
                     ))}
                 </div>
             </div>

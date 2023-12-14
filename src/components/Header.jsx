@@ -29,7 +29,7 @@ const Header = () => {
             {session ? (
               <>
                 <li>
-                  <Link href="/account">
+                  <Link href="/savedcourses">
                     Saved Courses
                   </Link>
                 </li>

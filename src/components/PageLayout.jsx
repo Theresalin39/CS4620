@@ -4,7 +4,6 @@ const PageLayout = ({ title, showSearchBar, onSearch }) => {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleSearch = (term) => {
-        // Trigger the search when the user presses the Enter key
         onSearch(term);
     };
 

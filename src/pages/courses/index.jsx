@@ -3,11 +3,12 @@ import supabase from '../../lib/supabase';
 import CourseCard from '../../components/CourseCard';
 import Layout from '../../components/Layout';
 import PageLayout from '@/components/PageLayout';
+import { useSearch } from '../../context/SearchContext';
 
 const CoursesPage = () => {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [searchTerm, setSearchTerm] = useState('');
+    const { searchTerm, setSearchTerm } = useSearch();
 
     const handleSearch = (term) => {
         setSearchTerm(term);
@@ -15,7 +16,6 @@ const CoursesPage = () => {
 
     const handleSaveCourse = async (course) => {
         console.log("Saving course:", course);
-        // Asynchronously get the current session
         const { data: { session } } = await supabase.auth.getSession();
         const user = session?.user;
     
@@ -26,12 +26,10 @@ const CoursesPage = () => {
     
             if (error) {
                 console.error('Error saving course:', error);
-                // Optionally, handle the error in the UI
             } else {
-                // Optionally, handle the success in the UI
             }
         } else {
-            // Optionally, handle the case where the user is not logged in
+            
         }
     };
     

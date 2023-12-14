@@ -39,7 +39,7 @@ const CoursesList = () => {
                         <p>{course.description}</p>
                         <p>Price: ${course.price}</p>
                         {course.thumbnail_url && <img src={course.thumbnail_url} alt={course.title} />}
-                        {/* add more course details here */}
+                        {/* add more course details */}
                     </div>
                 ))
             )}

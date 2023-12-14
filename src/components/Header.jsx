@@ -3,15 +3,16 @@ import Link from 'next/link';
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Auth } from '@supabase/auth-ui-react'; 
 import { ThemeSupa } from '@supabase/auth-ui-shared'; 
+import { useSearch } from '../context/SearchContext';
 
 const Header = () => {
   const session = useSession();
   const supabaseClient = useSupabaseClient();
   const isUserLoggedIn = !!session;
+  const { resetSearch } = useSearch();
 
   const handleSignOut = async () => {
     await supabaseClient.auth.signOut();
-    // Optionally, add any post-sign-out logic here
   };
 
   return (
@@ -27,7 +28,7 @@ const Header = () => {
             </li>
             <li>
               <Link href="/courses">
-                Courses
+                <button onClick={resetSearch}>Courses</button>
               </Link>
             </li>
             {isUserLoggedIn ? (

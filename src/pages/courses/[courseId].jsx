@@ -38,7 +38,7 @@ const CourseDetailPage = ({ course }) => {
         <p>Price: {course.price}</p>
         <p>Category: {course.category?.name}</p>
         <p>Instructor: {course.instructor?.name}</p>
-        {/* Render thumbnail or other details as needed */}
+        {/* Render thumbnail or other details */}
         </div>
     </Layout>
   );

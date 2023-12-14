@@ -33,7 +33,7 @@ const SavedCoursesPage = () => {
                 if (error) {
                     console.error('Error fetching saved courses:', error);
                 } else {
-                    setSavedCourses(data.map(item => item.courses)); // Note: 'item.courses'
+                    setSavedCourses(data.map(item => item.courses)); 
                 }
             } else {
                 console.error('User is not logged in');

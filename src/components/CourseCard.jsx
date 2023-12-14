@@ -21,9 +21,9 @@ const CourseCard = ({ course, onSaveCourse }) => {
             </Link>
             <button 
                 onClick={() => onSaveCourse(course)}
-                className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="mt-4 bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
             >
-                Save Course
+                Save
             </button>
         </div>
     );

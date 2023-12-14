@@ -1,13 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
-import { useSession } from '@supabase/auth-helpers-react';
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 
 const Header = () => {
   const session = useSession();
+  const supabaseClient = useSupabaseClient();
 
-  const handleSignOut = async (supabaseClient) => {
+  const handleSignOut = async () => {
     await supabaseClient.auth.signOut();
-    // Handle post-sign-out logic here, like redirecting to the home page
+    // Optionally, add any post-sign-out logic here
   };
 
   return (
@@ -16,7 +17,7 @@ const Header = () => {
         <h1 className="text-3xl font-bold text-orange-500">EDUFUN</h1>
         <nav>
           <ul className="flex space-x-4">
-          <li>
+            <li>
               <Link href="/">
                 Home
               </Link>
@@ -34,17 +35,17 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <button onClick={() => handleSignOut(useSupabaseClient())} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                  <button onClick={handleSignOut} className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
                     Sign Out
                   </button>
                 </li>
               </>
             ) : (
               <li>
-                <Link href="/signin">
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                <Link href="/">
+                  <span className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
                     Sign In
-                  
+                  </span>
                 </Link>
               </li>
             )}

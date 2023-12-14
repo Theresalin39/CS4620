@@ -1,5 +1,6 @@
 import supabase from '../../lib/supabase';
 import Layout from '@/components/Layout';
+import Image from 'next/image';
 
 export async function getServerSideProps(context) {
   const { courseId } = context.params;
@@ -27,19 +28,27 @@ export async function getServerSideProps(context) {
 
 const CourseDetailPage = ({ course }) => {
   if (!course) {
-    return <div>Course not found</div>;
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center text-xl">Course not found</div>
+        </div>
+      </Layout>
+    );
   }
 
   return (
     <Layout>
-        <div>
-        <h1>{course.title}</h1>
-        <p>{course.description}</p>
-        <p>Price: {course.price}</p>
-        <p>Category: {course.category?.name}</p>
-        <p>Instructor: {course.instructor?.name}</p>
-        {/* Render thumbnail or other details */}
+      <div className="container mx-auto px-4 py-8">
+        <div className="bg-white rounded-lg shadow-lg p-6">
+
+          <h1 className="text-2xl font-semibold mb-2">{course.title}</h1>
+          <p className="mb-4">{course.description}</p>
+          <p className="font-bold">Price: ${course.price}</p>
+          <p>Category: {course.category?.name}</p>
+          <p>Instructor: {course.instructor?.name}</p>
         </div>
+      </div>
     </Layout>
   );
 };

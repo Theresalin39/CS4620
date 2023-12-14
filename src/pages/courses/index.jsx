@@ -4,6 +4,7 @@ import CourseCard from '../../components/CourseCard';
 import Layout from '../../components/Layout';
 import PageLayout from '@/components/PageLayout';
 import { useSearch } from '../../context/SearchContext';
+import backgroundImg from '../../../public/bgimage.jpeg'; 
 
 const CoursesPage = () => {
     const [courses, setCourses] = useState([]);
@@ -68,6 +69,15 @@ const CoursesPage = () => {
 
     return (
         <Layout>
+            <div className="relative min-h-screen">
+                {/* Background Image */}
+                <Image
+                src={backgroundImg}
+                alt="Education Background"
+                layout="fill"
+                objectFit="cover"
+                quality={100}
+            /></div>
             <PageLayout title="All Courses" showSearchBar onSearch={handleSearch} />
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

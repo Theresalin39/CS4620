@@ -14,7 +14,7 @@ const Layout = ({ children }) => {
       <Header /> 
       {!session ? (
         <div className="flex justify-center items-center w-full min-h-screen bg-gray-100 p-4">
-          <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+          <div className="w-full max-w-md mx-auto bg-white rounded-lg shadow-xl overflow-hidden px-4">
             <Auth
               supabaseClient = {supabase}
               appearance = {{ theme: ThemeSupa}}

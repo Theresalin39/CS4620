@@ -24,8 +24,7 @@ const SavedCoursesPage = () => {
                             id,
                             title,
                             description,
-                            price,
-                            thumbnail_url
+                            price
                         )
                     `)
                     .eq('user_id', user.id);
@@ -33,7 +32,7 @@ const SavedCoursesPage = () => {
                 if (error) {
                     console.error('Error fetching saved courses:', error);
                 } else {
-                    setSavedCourses(data.map(item => item.courses)); 
+                    setSavedCourses(data.map(item => item.courses)); // Note: 'item.courses'
                 }
             } else {
                 console.error('User is not logged in');

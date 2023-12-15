@@ -1,20 +1,19 @@
 import Image from 'next/image';
-import { useState } from 'react';
-import Layout from '../components/Layout'; // Assuming you have a Layout component with a header
-import backgroundImg from '../../public/bgimage.jpeg'; // Replace with the path to your background image
+import { useRouter } from 'next/router';
+import Layout from '../components/Layout'; 
+import backgroundImg from '../../public/bgimage.jpeg'; 
 
 export default function Home() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const router = useRouter();
 
-  const handleSearch = (term) => {
-    // Implement your search logic here
-    console.log("Searching for:", term);
+  const navigateToCourses = () => {
+    router.push('/courses'); 
   };
 
   return (
     <Layout>
       <div className="relative min-h-screen">
-        {/* Background Image */}
+        {/* background image */}
         <Image
           src={backgroundImg}
           alt="Education Background"
@@ -23,21 +22,15 @@ export default function Home() {
           quality={100}
         />
 
-        {/* Search Bar Overlay */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-30">
-          <div className="w-1/2">
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full p-2 rounded-t"
-              placeholder="Search courses"
-            />
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-30 p-4">
+          <div className="text-center text-white max-w-2xl">
+            <h1 className="text-4xl font-bold mb-4">Welcome to EDUFUN</h1>
+            <p className="text-xl mb-6">Explore learning with our online courses. Expand your knowledge, discover new skills, and join a community committed to education.</p>
             <button
-              onClick={() => handleSearch(searchTerm)}
-              className="w-full p-2 bg-blue-500 text-white rounded-b"
+              onClick={navigateToCourses}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
-              Search
+              Start Learning
             </button>
           </div>
         </div>

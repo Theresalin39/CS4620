@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import supabase from '../lib/supabase'; 
 
@@ -38,8 +37,7 @@ const CoursesList = () => {
                         <h3>{course.title}</h3>
                         <p>{course.description}</p>
                         <p>Price: ${course.price}</p>
-                        {course.thumbnail_url && <img src={course.thumbnail_url} alt={course.title} />}
-                        {/* add more course details */}
+
                     </div>
                 ))
             )}

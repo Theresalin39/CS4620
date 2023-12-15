@@ -1,6 +1,5 @@
 import supabase from '../../lib/supabase';
 import Layout from '@/components/Layout';
-import Image from 'next/image';
 
 export async function getServerSideProps(context) {
   const { courseId } = context.params;
@@ -11,9 +10,10 @@ export async function getServerSideProps(context) {
       title,
       description,
       price,
-      thumbnail_url,
+      duration,
+      level,
       category:category_id (name),
-      instructor:instructor_id (name)
+      instructor:instructor_id (name, email)
     `)
     .eq('id', courseId)
     .single();
@@ -40,17 +40,28 @@ const CourseDetailPage = ({ course }) => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <div className="bg-white rounded-lg shadow-lg p-6">
-
-          <h1 className="text-2xl font-semibold mb-2">{course.title}</h1>
-          <p className="mb-4">{course.description}</p>
-          <p className="font-bold">Price: ${course.price}</p>
-          <p>Category: {course.category?.name}</p>
-          <p>Instructor: {course.instructor?.name}</p>
+        <div className="bg-white rounded-lg shadow-xl overflow-hidden">
+          <div className="p-6 md:p-10">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">{course.title}</h1>
+            <p className="text-gray-600 mb-4">{course.description}</p>
+            
+            <div className="bg-stone-100 p-4 rounded-lg">
+              <p className="font-semibold text-lg">Course Details:</p>
+              <ul className="list-disc list-inside space-y-2">
+                <li>Price: <span className="font-bold">${course.price}</span></li>
+                <li>Times: <span className="font-bold">{course.duration}</span></li>
+                <li>Level: <span className="font-bold">{course.level}</span></li>
+                <li>Subject: <span className="font-bold">{course.category?.name}</span></li>
+                <li>Instructor: <span className="font-bold">{course.instructor?.name}</span></li>
+                <li>Email: <span className="font-bold">{course.instructor?.email}</span></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>
   );
 };
+
 
 export default CourseDetailPage;

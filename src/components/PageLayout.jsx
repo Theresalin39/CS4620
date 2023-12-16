@@ -27,7 +27,7 @@ const PageLayout = ({ title, showSearchBar, onSearch }) => {
                     />
                 </div>
             )}
-            <h1 className="text-4xl font-extrabold text-gray-800">{title}</h1>
+            <h1 className="text-4xl font-extrabold text-lime-700">{title}</h1>
         </div>
     );
 };

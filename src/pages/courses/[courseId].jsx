@@ -31,7 +31,7 @@ const CourseDetailPage = ({ course }) => {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-8">
-          <div className="text-center text-xl">Course not found</div>
+          <div className="text-center text-xl text-gray-800">Course not found</div>
         </div>
       </Layout>
     );
@@ -41,9 +41,9 @@ const CourseDetailPage = ({ course }) => {
     <Layout>
       <div className="container mx-auto px-4 py-8">
         <div className="bg-white rounded-lg shadow-xl overflow-hidden">
-          <div className="p-6 md:p-10">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">{course.title}</h1>
-            <p className="text-gray-600 mb-4">{course.description}</p>
+          <div className="p-6 md:p-10 text-gray-800">
+            <h1 className="text-3xl md:text-4xl font-bold mb-3">{course.title}</h1>
+            <p className="mb-4">{course.description}</p>
             
             <div className="bg-stone-100 p-4 rounded-lg">
               <p className="font-semibold text-lg">Course Details:</p>

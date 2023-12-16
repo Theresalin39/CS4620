@@ -19,7 +19,7 @@ const PageLayout = ({ title, showSearchBar, onSearch }) => {
                 <div className="flex justify-end mb-4">
                     <input
                         type="text"
-                        className="w-2/5 px-4 py-2 border border-gray-300 rounded-md focus:ring-gray-500 focus:border-gray-500"
+                        className="w-2/5 px-4 py-2 border border-gray-300 rounded-md focus:ring-gray-500 focus:border-gray-500 text-gray-600"
                         placeholder="Search courses..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}

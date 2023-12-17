@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import supabase from '../lib/supabase'; 
 
-const CoursesList = () => {
+const CoursesCatalog = () => {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -45,4 +45,4 @@ const CoursesList = () => {
     );
 };
 
-export default CoursesList;
+export default CoursesCatalog;

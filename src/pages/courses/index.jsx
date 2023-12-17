@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import supabase from '../../lib/supabase'; 
-import CourseCard from '../../components/CourseCard';
+import CourseCard from '../../components/CourseDisplayCard';
 import Layout from '../../components/Layout';
 import PageLayout from '@/components/PageLayout';
 import { useSearch } from '../../context/SearchContext';
